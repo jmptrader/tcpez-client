@@ -15,10 +15,10 @@ require 'jeweler'
 Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://guides.rubygems.org/specification-reference/ for more options
   gem.name = "tcpez-client"
-  gem.homepage = "http://github.com/quirkey/tcpez-client"
+  gem.homepage = "http://github.com/paperlesspost/tcpez-client"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{tcpez-client is a basic ruby client for the tcpez protocol}
+  gem.description = %Q{tcpez-client provides the basic building blocks for implementing a ruby client for a server that speaks the tcpez protocol}
   gem.email = "aaron@quirkey.com"
   gem.authors = ["Aaron Quint"]
   # dependencies defined in Gemfile
@@ -30,12 +30,6 @@ Rake::TestTask.new(:test) do |test|
   test.libs << 'lib' << 'test'
   test.pattern = 'test/**/test_*.rb'
   test.verbose = true
-end
-
-desc "Code coverage detail"
-task :simplecov do
-  ENV['COVERAGE'] = "true"
-  Rake::Task['test'].execute
 end
 
 task :default => :test
