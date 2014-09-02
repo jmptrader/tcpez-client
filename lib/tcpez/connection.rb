@@ -72,7 +72,8 @@ module Tcpez
       Errno::EPIPE,
       Errno::ECONNREFUSED,
       Errno::ECONNRESET,
-      Timeout::Error
+      Timeout::Error,
+      Tcpez::InvalidResponse
     ]
 
     def initialize(addresses = nil)
@@ -103,7 +104,7 @@ module Tcpez
           tries += 1
           yield conn
         rescue *RETRYABLE_ERRORS => e
-          raise TcpezError.new(e) if tries > 3
+          raise e if tries > 3
           raise Innertube::Pool::BadResource
         end
       end

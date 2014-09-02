@@ -27,6 +27,7 @@ module Tcpez
     # waiting for the response to each request in the order that they
     # were sent.
     def flush
+      connection.connect unless connection.connected?
       # encode the buffer
       message = "#{[-count].pack('l>')}#{buffer}"
       # send the whole buffer

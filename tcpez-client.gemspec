@@ -12,31 +12,32 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
   s.authors = ["Aaron Quint"]
   s.date = "2014-06-30"
-  s.description = "TODO: longer description of your gem"
+  s.description = "tcpez-client provides the basic building blocks for implementing a ruby client for a server that speaks the tcpez protocol"
   s.email = "aaron@quirkey.com"
   s.extra_rdoc_files = [
     "LICENSE.txt",
-    "README.rdoc"
+    "README.md"
   ]
   s.files = [
     ".document",
     "Gemfile",
     "Gemfile.lock",
     "LICENSE.txt",
-    "README.rdoc",
+    "README.md",
     "Rakefile",
     "VERSION",
     "lib/tcpez-client.rb",
     "lib/tcpez/client.rb",
     "lib/tcpez/connection.rb",
     "lib/tcpez/pipeline.rb",
+    "tcpez-client.gemspec",
     "test/helper.rb",
     "test/test_tcpez.rb"
   ]
-  s.homepage = "http://github.com/quirkey/tcpez-client"
+  s.homepage = "http://github.com/paperlesspost/tcpez-client"
   s.licenses = ["MIT"]
   s.rubygems_version = "2.2.1"
-  s.summary = "TODO: one-line summary of your gem"
+  s.summary = "tcpez-client is a basic ruby client for the tcpez protocol"
 
   if s.respond_to? :specification_version then
     s.specification_version = 4
