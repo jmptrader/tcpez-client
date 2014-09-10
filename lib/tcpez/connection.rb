@@ -11,6 +11,8 @@ module Tcpez
   #
   # Much of this code was inspired/taken from https://github.com/aphyr/riemann-ruby-client
   class Connection
+    include Timeout
+
     DEFAULT_ADDRESS = 'localhost:2222'
     DEFAULT_TIMEOUT = 10
     attr_accessor :host, :port, :socket
@@ -23,7 +25,7 @@ module Tcpez
     end
 
     def connect
-      Timeout.timeout(@timeout) do
+      timeout(@timeout) do
         @socket = TCPSocket.new(@host, @port)
       end
     end
@@ -42,9 +44,11 @@ module Tcpez
     end
 
     def send_recv(request)
-      connect unless connected?
-      socket << encode(request)
-      read_message @socket
+      timeout(@timeout) do
+        connect unless connected?
+        socket << encode(request)
+        read_message @socket
+      end
     end
 
     def encode(s)
