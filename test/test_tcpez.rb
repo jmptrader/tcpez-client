@@ -21,5 +21,17 @@ class TestTcpez < MiniTest::Spec
       assert_equal 3, @pool.size
     end
   end
+  
+  describe "Tcpez::ConnectionPool" do
+    before do
+      @pool = Tcpez::ConnectionPool.new(["localhost:3222", "localhost:3223", "localhost:2234"])
+    end
+
+    it "should eventually time out bad connections and raise an error" do
+      assert_raises Errno::ECONNREFUSED do
+        @pool.send_recv "ping"
+      end
+    end
+  end
 
 end

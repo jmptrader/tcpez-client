@@ -102,18 +102,19 @@ module Tcpez
 
     def with_connection
       tries = 0
-
-      @pool.take do |conn|
-        begin
-          tries += 1
-          yield conn
-        rescue *RETRYABLE_ERRORS => e
-          raise e if tries > 3
-          raise Innertube::Pool::BadResource
+      begin
+        @pool.take do |conn|
+          begin
+            tries += 1
+            yield conn
+          rescue *RETRYABLE_ERRORS => e
+            raise e if tries > (3 * @connections.length)
+            raise Innertube::Pool::BadResource
+          end
         end
+      rescue Innertube::Pool::BadResource
+        retry
       end
-    rescue Innertube::Pool::BadResource
-      retry
     end
 
   end
