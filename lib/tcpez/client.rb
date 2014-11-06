@@ -16,6 +16,12 @@ module Tcpez
     def send_recv(request)
       pool.send_recv(request)
     end
+   
+    # Close all the connections in the pool
+    def disconnect
+      @pool.disconnect
+    end
+    alias :close :disconnect
 
   end
 end

@@ -33,6 +33,7 @@ module Tcpez
     def disconnect
       @socket.close if connected?
     end
+    alias :close :disconnect
 
     def connected?
       @socket && !@socket.closed?
@@ -93,6 +94,11 @@ module Tcpez
     def size
       @pool.size
     end
+
+    def disconnect
+      @pool.clear
+    end
+    alias :close :disconnect
 
     def send_recv(request)
       with_connection do |conn|
