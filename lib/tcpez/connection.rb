@@ -77,6 +77,7 @@ module Tcpez
       Errno::EPIPE,
       Errno::ECONNREFUSED,
       Errno::ECONNRESET,
+      Errno::EHOSTUNREACH,
       Timeout::Error,
       Tcpez::InvalidResponse
     ]
